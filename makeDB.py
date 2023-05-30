@@ -13,7 +13,7 @@ f = open("책목록.txt", 'r', encoding='UTF8')
 
 #제목과 작가라는 두가지 속성을 가지는 Books라는 테이블을 생성
 
-script = "CREATE TABLE Books(Title text, Author text);"
+script = "CREATE TABLE Books(Title text, Author text, Age text);"
 cursor.execute(script)
 
 while (1):
@@ -23,15 +23,19 @@ while (1):
     if not title : break
     author = f.readline()
     if not author : break
+    age = f.readline()
+    if not age : break
 
     # 개행 문자 제거
     title = title.strip()
     author = author.strip()
+    age = age.strip()
+
 
     #제목과 작가의 정보를 가진 튜플 생성
-    script = "INSERT INTO Books VALUES(?, ?);"
+    script = "INSERT INTO Books VALUES(?, ?, ?);"
   
-    cursor.execute(script, (title, author))
+    cursor.execute(script, (title, author, age))
 
 #커밋
 con.commit()

@@ -5,11 +5,13 @@ class typeBook :
     #클래스 멤버(제목, 저자, gpt 인스턴스)
     title = ""
     author = ""
+    age = ""
 
     #생성자
-    def __init__(self, title, author) :
+    def __init__(self, title, author, age) :
         self.title = title
         self.author = author
+        self.age = age
 
     #책 감상 생성 메서드
     def Review(self) :
@@ -36,3 +38,9 @@ class typeBook :
 
     def getAuthor(self) :
         return self.author   
+    
+    def setAge(self, age):
+        self.age = age
+
+    def getAge(self, age):
+        return self.age

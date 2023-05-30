@@ -31,9 +31,9 @@ class dbControl :
         #실행결과 배열이 끝날때 까지 튜플을 하나씩
         for book in Books:
             #튜플의 멤버를 변수로
-            title, author = book
+            title, author, age = book
             #책 타입의 인스턴스 생성
-            book_instance = typeBook(title, author)
+            book_instance = typeBook(title, author, age)
             #클래스 배열에 append
             book_list.append(book_instance)
 
@@ -58,9 +58,9 @@ class dbControl :
         #실행결과 배열이 끝날때 까지 튜플을 하나씩
         for book in Books:
             #튜플의 멤버를 변수로
-            title, author = book
+            title, author, age = book
             #책 타입의 인스턴스 생성
-            book_instance = typeBook(title, author)
+            book_instance = typeBook(title, author, age)
             #클래스 배열에 append
             book_list.append(book_instance)
 
@@ -70,13 +70,13 @@ class dbControl :
 
 
     #책 이름을 검색하여 리스트를 만드는 메서드
-    def SearchTitle(self, title):
+    def SearchTitle(self, name):
 
         #sql문
         script = " SELECT * FROM Books WHERE author = ?"
 
         #sql문 실행
-        self.cursor.execute(script, (title, ))
+        self.cursor.execute(script, (name, ))
 
         #리스트에 sql문 실행 결과(=배열) 저장
         Books = self.cursor.fetchall()
@@ -87,16 +87,42 @@ class dbControl :
         #실행결과 배열이 끝날때 까지 튜플을 하나씩
         for book in Books:
             #튜플의 멤버를 변수로
-            title, author = book
+            title, author, age = book
             #책 타입의 인스턴스 생성
-            book_instance = typeBook(title, author)
+            book_instance = typeBook(title, author, age)
             #클래스 배열에 append
             book_list.append(book_instance)
 
 
         #클래스 배열 반환
         return book_list
-        
+    
+    def searchAge(self, tag):
+
+        #sql문
+        script = " SELECT * FROM Books WHERE age = ?"
+
+        #sql문 실행
+        self.cursor.execute(script, (tag, ))
+
+        #리스트에 sql문 실행 결과(=배열) 저장
+        Books = self.cursor.fetchall()
+
+        #typeBook클래스 배열이 될 예정
+        book_list = []
+
+        #실행결과 배열이 끝날때 까지 튜플을 하나씩
+        for book in Books:
+            #튜플의 멤버를 변수로
+            title, author, age = book
+            #책 타입의 인스턴스 생성
+            book_instance = typeBook(title, author, age)
+            #클래스 배열에 append
+            book_list.append(book_instance)
+
+
+        #클래스 배열 반환
+        return book_list
 
 
 
